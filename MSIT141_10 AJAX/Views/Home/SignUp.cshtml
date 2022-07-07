@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<h1>SignUp</h1>
+
+<div class="row">
+<div class="col-3"></div>
+<div class="col-6">
+    <form method="post" enctype="application/x-www-form-urlencoded">
+        <div class="form-group">
+            <label for="InputName">姓名</label>
+            <input type="text" class="form-control" id="InputName" name="name">
+        </div>
+        <div class="form-group">
+            <label for="InputEmail">電子郵件</label>
+            <input type="text" class="form-control" id="InputEmail" name="email">
+        </div>
+        <div class="form-group">
+            <label for="InputEmail">年紀</label>
+            <input type="number" class="form-control" id="InputAge" name="age">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+    <div class="alert alert-info" id="div1"></div>
+</div>
+<div class="col-3"></div>
+</div>
+
+@section Scripts{
+    <script>
+    const btnSubmit = document.querySelector('.btn');
+    const txtName = document.querySelector('#InputName');
+    const txtEmail = document.querySelector('#InputEmail');
+    const txtAge = document.querySelector('#InputAge');
+    const divInfo = document.querySelector('#div1');
+
+        const xhr = new XMLHttpRequest();
+        txtName.addEventListener('blur', () => {
+            //GET ?name=Jack
+            if (txtName.value.trim() === "") {
+                txtName.innerHTML=<h2>請填入姓名</h2>
+                //顯示錯誤訊息
+            } else {
+                //Ajax
+                if (data == "True") {
+                    const data = xhr.responseText;
+
+                    //顯示資料
+                    divInfo.innerHTML = `<h3>${data}</h3>`;
+                }
+            }
+        })
+
+        xhr.open('POST', '@Url.Content("~/api/index")');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+
+
+    </script>
+
+}
+

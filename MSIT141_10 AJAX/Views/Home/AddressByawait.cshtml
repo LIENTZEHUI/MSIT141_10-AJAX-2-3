@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "AddressByawait";
+}
+
+<h1>AddressByawait</h1>
+
+@section Scripts{
+    <script>
+
+async function LoadCity() {
+            const response = await fetch('@Url.Content("~/api/City")');
+            const datas = await response.json();
+            datas.forEach(City => {
+            console.log(City.name)
+            });
+            }
+            LoadCity();
+
+</script>
+}
